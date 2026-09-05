@@ -1,0 +1,14 @@
+[
+  {
+    "Id": 1,
+    "Title": "Dentist Appointment",
+    "StartDateTimeUtc": "2024-06-12T09:30:00Z",
+    "DurationMinutes": 180
+  },
+  {
+    "Id": 2,
+    "Title": "Advanced Programming Class",
+    "StartDateTimeUtc": "2024-06-15T14:00:00Z",
+    "DurationMinutes": 180
+  }
+]

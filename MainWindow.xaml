@@ -1,0 +1,317 @@
+﻿<Window x:Class="Ap_project.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ap_project"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        >
+    
+       
+                        
+    <Grid Margin="10">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/back5.png" Opacity="22" Stretch="UniformToFill"></ImageBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+      
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,10">
+            <Image Source="/Images/calendar-64.png" Width="70" Height="70"></Image>
+            <TextBlock Text="{Binding weeknow.monthyear}" 
+                   FontSize="30" FontWeight="Bold" FontFamily="Bodoni MT" FontStyle="Italic"  Margin="10 10 0 0"/>
+            
+        </StackPanel>
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto">
+                </ColumnDefinition>
+                <ColumnDefinition Width="*">
+                </ColumnDefinition>
+                <ColumnDefinition Width="400"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="1" FontFamily="Bodoni MT" FontStyle="Italic" Foreground="DarkGoldenrod" FontSize="50" Margin="300 -75 0 0">Weekly planner</TextBlock>
+             
+            
+            
+            <StackPanel Grid.Column="0" Grid.RowSpan="2" Orientation="Vertical" Margin="0 10 0 0">
+                <Label FontSize="20" FontWeight="Bold" FontFamily="Bodoni MT" FontStyle="Italic" Content="Title:" VerticalAlignment="Bottom"/>
+                <TextBox Text="{Binding title, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True"
+                    TextWrapping="Wrap" 
+    Width="200" Height="25" Background="Transparent" BorderBrush="DarkGoldenrod" Margin="15 0 0 0"/>
+
+                <Label  FontSize="20" FontWeight="Bold" FontFamily="Bodoni MT" FontStyle="Italic" Content="Date:" VerticalAlignment="Center" Margin="0,0,0,0"/>
+                <DatePicker SelectedDate="{Binding selecteddate}" 
+       Width="200" Background="Transparent" BorderBrush="DarkGoldenrod" Margin="15 0 0 0"/>
+
+                <Label  FontSize="20" FontWeight="Bold" FontFamily="Bodoni MT" FontStyle="Italic" Content="Time:" VerticalAlignment="Center" Margin="0,0,0,0"/>
+                <TextBox Text="{Binding Showtime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
+    Width="200" Background="Transparent" BorderBrush="DarkGoldenrod" Margin="15 0 0 0" />
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="50 40 0 40">
+
+                    <Button Width="30" Height="30" Click="Add_roeedad" Margin="-30 0 10 0" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="/Images/add-32.png"></Image>
+                    </Button>
+                    <Button  Width="30" Height="30" Click="Edit_roeedad" Margin="40 0 10 0" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="/Images/edit-32.png"></Image>
+                    </Button>
+                    <Button Width="30" Height="30" Click="delete_roeedad" Margin="40 0 10 0" Background="Transparent" BorderBrush="Transparent" >
+                        <Image Source="/Images/delete-32.png"></Image>
+                    </Button>
+                </StackPanel>
+                
+                <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" Margin="-10,0,10,10">
+                    <Button  Margin="20 0 " Width="50" Height="50" Click="last_week_btn" BorderBrush="Transparent" Background="Transparent">
+                        <Image Source="/Images/lastweek.png"></Image>
+                    </Button>
+
+                    <Button  Width="50" Height="50" Click="next_week_btn" Margin="30 0 0 0" BorderBrush="Transparent" Background="Transparent">
+                        <Image Source="/Images/date-to-48.png"></Image>
+                    </Button>
+                </StackPanel>
+                <Image Source="/Images/clock.png" Width="180" Height="300" Margin="0 30 0 0"></Image>
+                    
+
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                <!--  -->
+                <Border BorderBrush="DarkGoldenrod" BorderThickness="5 " Margin="10" Padding="5" Width="180">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            
+                        <TextBlock Text="{Binding weeknow.roeedadharrooz[0][0].StartDateTimeUtc, StringFormat='dd/MM - '}"
+                               FontWeight="Bold" Margin="0,0,0,5" FontSize="20" FontFamily="Bodoni MT" FontStyle="Italic"  ></TextBlock>
+                            <TextBlock FontWeight="Bold" FontSize="20"  FontFamily="Bodoni MT" FontStyle="Italic" >Sunday</TextBlock>
+                        </StackPanel>
+                        <ListView Background="Transparent" BorderBrush="Transparent"
+                                  ItemsSource="{Binding weeknow.roeedadharrooz[0]}"
+                                  SelectionChanged="SelectionChanged"
+    SelectedItem="{Binding selecting, Mode=OneWay}"
+                                  Height="300" Width="160"
+                                  x:Name="SundayListView"
+                                  SelectionMode="Single">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="3">
+                                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold"/>
+                                        <TextBlock Text="{Binding StartDateTimeUtc, StringFormat='HH:mm'}" 
+                                               Foreground="Gray" FontSize="12"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                </Border>
+
+                <!--  -->
+                <Border BorderBrush="DarkGoldenrod" BorderThickness="5 " Margin="10" Padding="5" Width="180">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            
+                        <TextBlock Text="{Binding weeknow.roeedadharrooz[1][0].StartDateTimeUtc, StringFormat='dd/MM - '}"
+                               FontWeight="Bold" FontSize="20" Margin="0,0,0,5" FontFamily="Bodoni MT" FontStyle="Italic" />
+                            <TextBlock FontWeight="Bold" FontSize="20" FontFamily="Bodoni MT" FontStyle="Italic" >Monday</TextBlock>
+                        </StackPanel>
+                        <ListView Background="Transparent" BorderBrush="Transparent"
+                            ItemsSource="{Binding weeknow.roeedadharrooz[1]}"
+                                  SelectionChanged="SelectionChanged"
+    SelectedItem="{Binding selecting, Mode=OneWay}"
+                                  Height="300" Width="160"
+                                  x:Name="MondayListView"
+                                  SelectionMode="Single"
+                                  >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="3">
+                                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold"/>
+                                        <TextBlock Text="{Binding StartDateTimeUtc, StringFormat='HH:mm'}" 
+                   Foreground="Gray" FontSize="12"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                </Border>
+
+                <!--  -->
+                <Border BorderBrush="DarkGoldenrod" BorderThickness="5 " Margin="10" Padding="5" Width="180">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"> 
+                            
+                        <TextBlock Text="{Binding weeknow.roeedadharrooz[2][0].StartDateTimeUtc, StringFormat='dd/MM - '}"
+                               FontWeight="Bold" Margin="0,0,0,5" FontSize="20" FontFamily="Bodoni MT" FontStyle="Italic" />
+                            <TextBlock FontWeight="Bold" FontSize="20" FontFamily="Bodoni MT" FontStyle="Italic" >Tuesday</TextBlock>
+                        </StackPanel>
+                        <ListView Background="Transparent" BorderBrush="Transparent"
+                            ItemsSource="{Binding weeknow.roeedadharrooz[2]}"
+                                  SelectionChanged="SelectionChanged"
+    SelectedItem="{Binding selecting, Mode=OneWay}"
+                                  Height="300" Width="160"
+                                  x:Name="TuesdayListView"
+                                  SelectionMode="Single"
+                                  >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="3">
+                                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold"/>
+                                        <TextBlock Text="{Binding StartDateTimeUtc, StringFormat='HH:mm'}" 
+                   Foreground="Gray" FontSize="12"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                </Border>
+
+                <!-- -->
+                <Border BorderBrush="DarkGoldenrod" BorderThickness="5 " Margin="10" Padding="5" Width="180">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"> 
+  
+                        <TextBlock Text="{Binding weeknow.roeedadharrooz[3][0].StartDateTimeUtc, StringFormat='dd/MM - '}"
+                               FontWeight="Bold" Margin="0,0,0,5" FontSize="19" FontFamily="Bodoni MT" FontStyle="Italic" />
+                            <TextBlock FontWeight="Bold" FontSize="19" FontFamily="Bodoni MT" FontStyle="Italic" >Wednesday</TextBlock>
+                        </StackPanel>
+                        <ListView Background="Transparent" BorderBrush="Transparent"
+                            ItemsSource="{Binding weeknow.roeedadharrooz[3]}"
+                                  SelectionChanged="SelectionChanged"
+    SelectedItem="{Binding selecting, Mode=OneWay}"
+   
+                                  Height="300" Width="160"
+                                  x:Name="WednesdayListView"
+                                  SelectionMode="Single">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="3">
+                                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold"/>
+                                        <TextBlock Text="{Binding StartDateTimeUtc, StringFormat='HH:mm'}" 
+                   Foreground="Gray" FontSize="12"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            
+            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <!-- -->
+                <Border BorderBrush="DarkGoldenrod" BorderThickness="5 " Margin="10" Padding="5" Width="180">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            
+                        <TextBlock Text="{Binding weeknow.roeedadharrooz[4][0].StartDateTimeUtc, StringFormat='dd/MM - '}"
+                               FontWeight="Bold" Margin="0,0,0,5" FontSize="20" FontFamily="Bodoni MT" FontStyle="Italic" />
+                            <TextBlock FontWeight="Bold" FontSize="20" FontFamily="Bodoni MT" FontStyle="Italic" >Thursday</TextBlock>
+                        </StackPanel>
+                        <ListView Background="Transparent" BorderBrush="Transparent"
+                            ItemsSource="{Binding weeknow.roeedadharrooz[4]}"
+                                  SelectionChanged="SelectionChanged"
+    SelectedItem="{Binding selecting, Mode=OneWay}"
+    
+                                  Height="300" Width="160"
+                                  x:Name="ThursdayListView" 
+                                  SelectionMode="Single">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="3">
+                                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold"/>
+                                        <TextBlock Text="{Binding StartDateTimeUtc, StringFormat='HH:mm'}" 
+                   Foreground="Gray" FontSize="12"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                </Border>
+
+                <!-- -->
+                <Border BorderBrush="DarkGoldenrod" BorderThickness="5 " Margin="10" Padding="5" Width="180">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            
+                        <TextBlock Text="{Binding weeknow.roeedadharrooz[5][0].StartDateTimeUtc, StringFormat='dd/MM - '}"
+                               FontWeight="Bold" FontSize="20" Margin="0,0,0,5" FontFamily="Bodoni MT" FontStyle="Italic" />
+                            <TextBlock FontWeight="Bold" FontSize="20" FontFamily="Bodoni MT" FontStyle="Italic" >Friday</TextBlock>
+                        </StackPanel>
+                        <ListView Background="Transparent" BorderBrush="Transparent"
+                            ItemsSource="{Binding weeknow.roeedadharrooz[5]}"
+                                  SelectionChanged="SelectionChanged"
+    SelectedItem="{Binding selecting, Mode=OneWay}"
+  
+                                  Height="300" Width="160"
+                                  x:Name="FridayListView"
+                                  SelectionMode="Single">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="3">
+                                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold"/>
+                                        <TextBlock Text="{Binding StartDateTimeUtc, StringFormat='HH:mm'}" 
+                   Foreground="Gray" FontSize="12"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                </Border>
+
+                <!-- -->
+                <Border BorderBrush="DarkGoldenrod" BorderThickness="5 " Margin="10" Padding="5" Width="180">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            
+                        <TextBlock Text="{Binding weeknow.roeedadharrooz[6][0].StartDateTimeUtc, StringFormat='dd/MM - '}"
+                               FontWeight="Bold" FontSize="20" Margin="0,0,0,5" FontFamily="Bodoni MT" FontStyle="Italic"  ></TextBlock>
+                            <TextBlock FontSize="20" FontWeight="Bold" FontFamily="Bodoni MT" FontStyle="Italic" >Saturday</TextBlock>
+                        </StackPanel>
+
+
+                        <ListView Background="Transparent" BorderBrush="Transparent" 
+                            ItemsSource="{Binding weeknow.roeedadharrooz[6]}"
+                                  SelectionChanged="SelectionChanged"
+    SelectedItem="{Binding selecting, Mode=OneWay}"
+   
+                                  Height="300" Width="160"
+                                  x:Name="SaturdayListView"
+                                  SelectionMode="Single">
+                            <ListView.ItemTemplate >
+                                <DataTemplate >
+                                   
+                                    <StackPanel Margin="3" >
+                                        <TextBlock Text="{Binding Title}" 
+                                          FontWeight="SemiBold" />
+                                        <TextBlock Text="{Binding StartDateTimeUtc, StringFormat='HH:mm'}" 
+                   Foreground="Gray" FontSize="12"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        
+                    </StackPanel>
+                    <!-- -->
+                </Border>
+                <Border BorderBrush="DarkGoldenrod" BorderThickness="5 " Margin="10" Padding="5" Width="180">
+                    <StackPanel>
+                        <TextBlock Text="Note" HorizontalAlignment="Center" FontSize="20" FontFamily="Bodoni MT" FontStyle="Italic"
+               FontWeight="Bold" Margin="0,0,0,5"/>
+                        <TextBox Height="270" Background="Transparent" BorderBrush="Transparent" AcceptsReturn="True" 
+                            TextWrapping="Wrap" 
+                                 Text="{Binding weeknow.weeknote, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

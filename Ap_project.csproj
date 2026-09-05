@@ -1,0 +1,78 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\add-32.png" />
+    <None Remove="Images\Add.png" />
+    <None Remove="Images\back.jpeg" />
+    <None Remove="Images\back2.jpg" />
+    <None Remove="Images\back3.jpg" />
+    <None Remove="Images\back4.jpg" />
+    <None Remove="Images\back5.png" />
+    <None Remove="Images\calendar-64.png" />
+    <None Remove="Images\calender.png" />
+    <None Remove="Images\car.png" />
+    <None Remove="Images\clock.png" />
+    <None Remove="Images\computer.jpeg" />
+    <None Remove="Images\computer.png" />
+    <None Remove="Images\date-to-48.png" />
+    <None Remove="Images\delete-32.png" />
+    <None Remove="Images\Delete.png" />
+    <None Remove="Images\edit-32.png" />
+    <None Remove="Images\Edit.png" />
+    <None Remove="Images\lastweek.png" />
+    <None Remove="Images\nextweek.png" />
+    <None Remove="Images\ocean.png" />
+    <None Remove="Images\Screenshot 2025-04-10 181858.png" />
+    <None Remove="Images\tree.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Myviews\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\add-32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\back5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\calendar-64.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\clock.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\date-to-48.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\delete-32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\edit-32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\lastweek.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="dataroeedad.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
