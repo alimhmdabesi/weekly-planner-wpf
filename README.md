@@ -8,7 +8,7 @@ A C# WPF desktop application for managing weekly events, schedules, and notes.
 
 ### Weekly Planner
 
-![Weekly Planner Screenshot](assets/weeklyplanner.png)
+![Weekly Planner Screenshot](assets/screenshot.png)
 
 > The screenshot above shows the weekly calendar interface, including scheduled events, date navigation, and event management controls.
 
